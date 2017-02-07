@@ -40,12 +40,11 @@ module.exports = (config) => {
     ],
     singleRun: true,
     coverageReporter: {
-      reporters: [{
-        type: 'html',
-        dir: 'coverage/'
-      }, {
-        type: 'text-summary'
-      }]
+      dir: 'coverage',
+      reporters: [
+        {type: 'html', subdir: 'html'},
+        {type: 'text', file: 'coverage.txt'}
+      ]
     }
   })
 }
