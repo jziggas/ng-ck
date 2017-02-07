@@ -49,12 +49,17 @@ app.component('ngCk', {
     debug: '<?',
     maxLength: '<?',
     minLength: '<?',
+    placeholder: '<?',
     readOnly: '<?',
     required: '<?',
     onBlur: '&?',
     onContentChanged: '&?',
     onFocus: '&?',
-    onInstanceReady: '&?'
+    onInstanceReady: '&?',
+    onKey: '&?',
+    onPaste: '&?',
+    onResize: '&?',
+    onSave: '&?'
   },
   template: '<textarea ng-attr-placeholder="{{vm.placeholder}}"></textarea>',
   controller: ['$element', 'ngCkConfig', function NgCk ($element, ngCkConfig) {
@@ -113,6 +118,26 @@ app.component('ngCk', {
       if (vm.onInstanceReady) {
         vm.onInstanceReady({editor: editor})
       }
+      if (vm.onKey) {
+        editor.on('key', function onEditorKey (event) {
+          vm.onKey({$event: event, editor: editor})
+        })
+      }
+      if (vm.onResize) {
+        editor.on('resize', function onEditorResize (event) {
+          vm.onResize({$event: event, editor: editor})
+        })
+      }
+      if (vm.onPaste) {
+        editor.on('paste', function onEditorPaste (event) {
+          vm.onPaste({$event: event, editor: editor})
+        })
+      }
+      if (vm.onSave) {
+        editor.on('save', function onEditorSave (event) {
+          vm.onSave({$event: event, editor: editor})
+        })
+      }
       vm.ngModelCtrl.$render()
     }
 
@@ -162,9 +187,9 @@ app.component('ngCk', {
 
     function onChanges (changes) {
       if (
-                changes.ngModel &&
-                changes.ngModel.currentValue !== changes.ngModel.previousValue
-            ) {
+          changes.ngModel &&
+          changes.ngModel.currentValue !== changes.ngModel.previousValue
+      ) {
         content = changes.ngModel.currentValue
         if (editor && !editorChanged) {
           if (content) {

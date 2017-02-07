@@ -43,7 +43,7 @@ module.exports = (config) => {
       dir: 'coverage',
       reporters: [
         {type: 'html', subdir: 'html'},
-        {type: 'text', file: 'coverage.txt'}
+        {type: 'text'}
       ]
     }
   })
