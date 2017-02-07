@@ -13,7 +13,13 @@ ng-ck is an Angular 1 Component wrapper for the WYSIWIG rich text editor CKEdito
 
 ## Installation
 
+via NPM:
+
 `npm i ng-ck --save`
+
+via Bower:
+
+`bower install --save https://github.com/jziggas/ng-ck#<RELEASE_VERSION>`
 
 ## Usage
 
