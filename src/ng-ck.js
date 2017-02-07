@@ -87,9 +87,7 @@ app.component('ngCk', {
         }
       }
 
-      if (vm.config) {
-        config = angular.merge({}, vm.config)
-      }
+      config = vm.config ? angular.merge({}, vm.config) : ngCkConfig
     }
 
     function postLink () {
