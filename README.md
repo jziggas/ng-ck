@@ -18,5 +18,59 @@ ng-ck is an Angular 1 Component wrapper for the WYSIWIG rich text editor CKEdito
 ## Usage
 
 - Add ng-ck as a dependency to your app module (e.g. `angular.module('myApp', ['ngCk']);`)
-- use ngCkConfigProvider to overwrite the default configuration object in an `app.config` block, or pass a configuration object in per instance.
 - Add the directive to your template: `<ng-ck ng-model="content"></ng-ck>`
+
+## Configuration
+
+- A default set of toolbar options are provided by `ngCkConfigProvider` with editor buttons that are capable of passing through Angular's [$sanitize](https://docs.angularjs.org/api/ngSanitize/service/$sanitize) service.
+- You can use `ngCkConfigProvider` to overwrite the default configuration object in an `app.config` block:
+
+  ```
+  app.config(['ngCkConfig', function(ngCkConfig) {
+    let config = {
+      language: 'ru',
+      toolbar: ['Cut', 'Copy', 'Paste'],
+      removePlugins: 'elementspath'
+     }
+     
+     // Use this to overwrite the default configuration object
+     ngCkConfig.set(config)
+     
+     // Or merge your own configuration object into the default configuration
+     ngCkConfig.merge(config)
+  }])
+  ```
+
+- Or you can pass a configuration object, per instance of the editor, to overwrite the default configuration:
+
+  ```
+  <ng-ck ng-model="content" config="myConfig"></ng-ck>
+  ```
+
+## Bindings
+
+- `config: '<?'`
+  - Configuration object passed to CKEditor. Overwrites the default configuration provided by `ngCkConfigProvider`.
+- `maxLength: '<?'`
+  - Default `undefined`.
+- `minLength: '<?'`
+  - Default `undefined`.
+- `readOnly: '<?'`
+  - Sets the [readOnly](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-property-readOnly) property of the editor. Default `undefined`.
+- `required: '<?'`
+  - Designates if the editor is a required form input and sets the validity of ngModel. Default `undefined`.
+- `onBlur: '&?'`
+  - A callback for the [blur](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-blur) event
+  - `on-focus="contentChanged($event, editor)"`
+- `onContentChanged: '&?'`
+  - A callback for the [change](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-change) event
+  - `on-content-changed="contentChanged(editor, html, text)"`
+- `onFocus: '&?'`
+  - A callback for the [focus](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-focus) event
+  - `on-focus="contentChanged($event, editor)"`
+- `onInstanceReady: '&?`
+  - A callback for the [instanceReady](http://docs.ckeditor.com/#!/api/CKEDITOR-event-instanceReady) event
+  - `on-instance-ready="instanceReady(editor)"`
+
+## Contribution
+- Welcome
