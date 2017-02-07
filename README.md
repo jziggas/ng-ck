@@ -32,7 +32,7 @@ via Bower:
 - You can use `ngCkConfigProvider` to overwrite the default configuration object in an `app.config` block:
 
   ```
-  app.config(['ngCkConfig', function(ngCkConfig) {
+  app.config(['ngCkConfigProvider', function(ngCkConfigProvider) {
     let config = {
       language: 'ru',
       toolbar: ['Cut', 'Copy', 'Paste'],
@@ -40,10 +40,10 @@ via Bower:
      }
      
      // Use this to overwrite the default configuration object
-     ngCkConfig.set(config)
+     ngCkConfigProvider.set(config)
      
      // Or merge your own configuration object into the default configuration
-     ngCkConfig.merge(config)
+     ngCkConfigProvider.merge(config)
   }])
   ```
 
