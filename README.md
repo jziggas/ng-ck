@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jziggas/ng-ck/master/LICENSE)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://github.com/jziggas/ng-ck)
+[![Build Status](https://travis-ci.org/jziggas/ng-ck.svg?branch=master)](https://travis-ci.org/jziggas/ng-ck)
 
 # ng-ck
 
