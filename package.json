@@ -1,0 +1,59 @@
+{
+  "name": "ng-ck",
+  "version": "1.0.0",
+  "description": "An Angular 1 Component for CKEditor",
+  "main": "src/ng-ck.js",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "ckeditor": "^4.6.2"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.6.1",
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "http-server": "^0.9.0",
+    "jasmine": "^2.5.3",
+    "jasmine-core": "^2.5.2",
+    "jquery": "^3.1.1",
+    "karma": "^1.4.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-mocha-reporter": "^2.2.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "live-server": "^1.2.0",
+    "standard": "^8.6.0",
+    "uglify-js": "^2.7.5"
+  },
+  "scripts": {
+    "demo": "node node_modules/live-server/live-server.js . --open=demo/index.html",
+    "test": "node node_modules/standard/bin/cmd.js && node node_modules/karma/bin/karma start",
+    "build": "node node_modules/babel-cli/bin/babel.js src/ng-ck.js | node node_modules/uglify-js/bin/uglifyjs > dist/ng-ck.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jziggas/ng-ck.git"
+  },
+  "keywords": [
+    "angular",
+    "component",
+    "ckeditor",
+    "wysiwyg",
+    "directive"
+  ],
+  "author": "Joshua Ziggas <zoshjiggas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jziggas/ng-ck/issues"
+  },
+  "homepage": "https://github.com/jziggas/ng-ck#readme",
+  "standard": {
+    "globals": [
+      "CKEDITOR",
+      "angular",
+      "inject",
+      "$"
+    ],
+    "env": ["jasmine"]
+  }
+}

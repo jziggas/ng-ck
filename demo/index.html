@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <title>ng-ck demo</title>
+    <meta charset="utf-8">
+</head>
+<html>
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.js"></script>
+    <script src="../src/ng-ck.js"></script>
+    <script>
+        var app = angular.module('ngCkDemo', ['ngCk']);
+        app.config(['ngCkConfigProvider', function(ngCkConfigProvider) {
+            // Set custom config object here
+            ngCkConfigProvider.merge({
+                removePlugins: 'elementspath'
+            });
+        }]);
+        app.controller('AppCtrl', ['$scope', function($scope) {
+            let vm = this;
+            vm.content = '<b>Hello World.</b>';
+            vm.editorReady = editorReady;
+            vm.contentChanged = contentChanged;
+            function editorReady(editor) {
+                console.log('Editor created: ', editor);
+            }
+            function contentChanged(editor, html) {
+                console.log('Content has changed in the editor: ', html);
+            }
+        }]);
+    </script>
+    <body ng-app="ngCkDemo" ng-controller="AppCtrl as app">
+        <h3>Default Editor with instanceReady and contentChanged callbacks in the console:</h3>
+        <ng-ck ng-model="app.content" on-instance-ready="app.editorReady(editor)" on-content-changed="app.contentChanged(editor, html)"></ng-ck>
+    </body>
+</html>
