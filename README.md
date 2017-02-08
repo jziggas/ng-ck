@@ -66,17 +66,26 @@ via Bower:
 - `required: '<?'`
   - Designates if the editor is a required form input and sets the validity of ngModel. Default `undefined`.
 - `onBlur: '&?'`
-  - A callback for the [blur](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-blur) event
-  - `on-focus="contentChanged($event, editor)"`
+  - Callback for the [blur](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-blur) event
+  - `on-blur="onBlur($event, editor)"`
 - `onContentChanged: '&?'`
-  - A callback for the [change](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-change) event
-  - `on-content-changed="contentChanged(editor, html, text)"`
+  - Callback for the [change](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-change) event
+  - `on-content-changed="onContentChanged(editor, html, text)"`
 - `onFocus: '&?'`
-  - A callback for the [focus](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-focus) event
-  - `on-focus="contentChanged($event, editor)"`
+  - Callback for the [focus](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-focus) event
+  - `on-focus="onFocus($event, editor)"`
 - `onInstanceReady: '&?`
-  - A callback for the [instanceReady](http://docs.ckeditor.com/#!/api/CKEDITOR-event-instanceReady) event
-  - `on-instance-ready="instanceReady(editor)"`
+  - Callback for the [instanceReady](http://docs.ckeditor.com/#!/api/CKEDITOR-event-instanceReady) event
+  - `on-instance-ready="onInstanceReady(editor)"`
+- `onKey: '&?`
+  - Callback for the [key](http://docs.ckeditor.com/#!/api/CKEDITOR-event-key) event
+  - `on-key="onKey($event, editor)"`
+- `onPaste: '&?`
+  - Callback for the [paste](http://docs.ckeditor.com/#!/api/CKEDITOR-event-paste) event
+  - `on-paste="onPaste($event, editor)"`
+- `onSave: '&?`
+  - Callback for the [save](http://docs.ckeditor.com/#!/api/CKEDITOR-event-save) event
+  - `on-save="onSave($event, editor)"`
 
 ## Contribution
-- Welcome
+- Pull requests welcome.
