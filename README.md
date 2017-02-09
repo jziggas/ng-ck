@@ -66,11 +66,17 @@ The list of events can be found at the [CKEDITOR.editor Documentation](http://do
 
 The following attributes are also available:
 
+- `checkTextLength: '<?`
+  - Validates ngModel against the length of text in the editor.
+  - Default `undefined`
 - `config: '<?'`
   - Configuration object passed to CKEditor. Overwrites the default configuration provided by `ngCkConfigProvider`.
 - `maxLength: '<?'`
-  - Updates ngModel validity. Default `undefined`.
+  - Checks against the length of html in the editor. Can be configured to check the length of text instead via `checkTextLength`.
+  - Updates ngModel validity.
+  - Default `undefined`.
 - `minLength: '<?'`
+  - Checks against the length of html in the editor. Can be configured to check the length of text instead via `checkTextLength`.
   - Updates ngModel validity. Default `undefined`.
 - `readOnly: '<?'`
   - Sets the [readOnly](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-property-readOnly) property of the editor. Default `undefined`.

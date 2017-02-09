@@ -1,6 +1,6 @@
 {
   "name": "ng-ck",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "An Angular 1 Component for CKEditor",
   "main": "src/ng-ck.js",
   "dependencies": {

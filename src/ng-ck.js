@@ -125,6 +125,7 @@ app.component('ngCk', {
     ngModelCtrl: 'ngModel'
   },
   bindings: {
+    checkTextLength: '<?',
     config: '<?',
     debug: '<?',
     maxLength: '<?',
@@ -298,7 +299,7 @@ app.component('ngCk', {
       if (!modelChanged && html !== vm.ngModelCtrl.$viewValue) {
         editorChanged = true
         vm.ngModelCtrl.$setViewValue(html)
-        validate(text)
+        validate(vm.checkTextLength ? text : html)
         if (vm.onContentChanged) {
           vm.onContentChanged({
             editor: editor,
@@ -343,15 +344,15 @@ app.component('ngCk', {
       editor.destroy()
     }
 
-    function validate (text) {
+    function validate (body) {
       if (vm.maxLength) {
-        vm.ngModelCtrl.$setValidity('maxlength', text.length > vm.maxLength + 1)
+        vm.ngModelCtrl.$setValidity('maxlength', body.length > vm.maxLength + 1)
       }
       if (vm.minLength) {
-        vm.ngModelCtrl.$setValidity('minlength', text.length <= vm.minLength)
+        vm.ngModelCtrl.$setValidity('minlength', body.length <= vm.minLength)
       }
       if (vm.required) {
-        vm.ngModelCtrl.$setValidity('required', text.length > 0)
+        vm.ngModelCtrl.$setValidity('required', body.length > 0)
       }
     }
 
