@@ -26,6 +26,83 @@ app.provider('ngCkConfig', function ngCkConfigProvider () {
     language: 'en'
   }
 
+  let events = [
+    'activeEnterModeChange',
+    'activeFilterChange',
+    'afterCommandExec',
+    'afterInsertHtml',
+    'afterPaste',
+    'afterPasteFromWord',
+    'afterSetData',
+    'afterUndoImage',
+    'ariaEditorHelpLabel',
+    'autogrow',
+    'beforeCommandExec',
+    'beforeDestroy',
+    'beforeGetData',
+    'beforeModeUnload',
+    'beforeSetMode',
+    'beforeUndoImage',
+    'blur',
+    'change',
+    'configLoaded',
+    'contentDirLoaded',
+    'contentDom',
+    'contentDomInvalidated',
+    'contentDomUnload',
+    'customConfigLoaded',
+    'dataFiltered',
+    'dataReady',
+    'destroy',
+    'dialogHide',
+    'dialogShow',
+    'dirChanged',
+    'doubleclick',
+    'dragend',
+    'dragstart',
+    'drop',
+    'elementsPathUpdate',
+    'fileUploadRequest',
+    'fileUploadResponse',
+    'floatingSpaceLayout',
+    'focus',
+    'getData',
+    'getSnapshot',
+    'insertElement',
+    'insertHtml',
+    'insertText',
+    'instanceReady',
+    'key',
+    'langLoaded',
+    'loadSnapshot',
+    'loaded',
+    'lockSnapshot',
+    'maximize',
+    'menuShow',
+    'mode',
+    'notificationHide',
+    'notificationShow',
+    'notificationUpdate',
+    'paste',
+    'pasteFromWord',
+    'pluginsLoaded',
+    'readOnly',
+    'removeFormatCleanup',
+    'required',
+    'resize',
+    'save',
+    'saveSnapshot',
+    'selectionChange',
+    'setData',
+    'stylesSet',
+    'template',
+    'toDataFormat',
+    'toHtml',
+    'unlockSnapshot',
+    'updateSnapshot',
+    'widgetDefinition'
+  ]
+
   let config = angular.copy(defaultConfiguration)
 
   this.set = (customConfiguration) => {
@@ -36,7 +113,10 @@ app.provider('ngCkConfig', function ngCkConfigProvider () {
     config = angular.merge({}, defaultConfiguration, customConfiguration)
   }
 
-  this.$get = () => config
+  this.$get = () => ({
+    config: config,
+    events: events
+  })
 })
 
 app.component('ngCk', {
@@ -49,17 +129,84 @@ app.component('ngCk', {
     debug: '<?',
     maxLength: '<?',
     minLength: '<?',
-    placeholder: '<?',
-    readOnly: '<?',
-    required: '<?',
+    onActiveEnterModeChange: '&?',
+    onActiveFilterChange: '&?',
+    onAfterCommandExec: '&?',
+    onAfterInsertHtml: '&?',
+    onAfterPaste: '&?',
+    onAfterPasteFromWord: '&?',
+    onAfterSetData: '&?',
+    onAfterUndoImage: '&?',
+    onAriaEditorHelpLabel: '&?',
+    onAutogrow: '&?',
+    onBeforeCommandExec: '&?',
+    onBeforeDestroy: '&?',
+    onBeforeGetData: '&?',
+    onBeforeModeUnload: '&?',
+    onBeforeSetMode: '&?',
+    onBeforeUndoImage: '&?',
     onBlur: '&?',
-    onContentChanged: '&?',
+    onChange: '&?',
+    onConfigLoaded: '&?',
+    onContentChanged: '&?', // Not CKEditor API
+    onContentDirLoaded: '&?',
+    onContentDom: '&?',
+    onContentDomInvalidated: '&?',
+    onContentDomUnload: '&?',
+    onCustomConfigLoaded: '&?',
+    onDataFiltered: '&?',
+    onDataReady: '&?',
+    onDestroy: '&?', // Not sure if this works because of the cleanup done in $onDestroy. Needs testing.
+    onDialogHide: '&?',
+    onDialogShow: '&?',
+    onDirChanged: '&?',
+    onDoubleclick: '&?',
+    onDragend: '&?',
+    onDragstart: '&?',
+    onDrop: '&?',
+    onElementsPathUpdate: '&?',
+    onFileUploadRequest: '&?',
+    onFileUploadResponse: '&?',
+    onFloatingSpaceLayout: '&?',
     onFocus: '&?',
+    onGetData: '&?',
+    onGetSnapshot: '&?',
+    onInsertElement: '&?',
+    onInsertHtml: '&?',
+    onInsertText: '&?',
     onInstanceReady: '&?',
     onKey: '&?',
+    onLangLoaded: '&?',
+    onLoadSnapshot: '&?',
+    onLoaded: '&?',
+    onLockSnapshot: '&?',
+    onMaximize: '&?',
+    onMenuShow: '&?',
+    onMode: '&?',
+    onNotificationHide: '&?',
+    onNotificationShow: '&?',
+    onNotificationUpdate: '&?',
     onPaste: '&?',
+    onPasteFromWord: '&?',
+    onPluginsLoaded: '&?',
+    onReadOnly: '&?',
+    onRemoveFormatCleanup: '&?',
+    onRequired: '&?',
     onResize: '&?',
-    onSave: '&?'
+    onSave: '&?',
+    onSaveSnapshot: '&?',
+    onSelectionChange: '&?',
+    onSetData: '&?',
+    onStylesSet: '&?',
+    onTemplate: '&?',
+    onToDataFormat: '&?',
+    onToHtml: '&?',
+    onUnlockSnapshot: '&?',
+    onUpdateSnapshot: '&?',
+    onWidgetDefinition: '&?',
+    placeholder: '<?',
+    readOnly: '<?',
+    required: '<?'
   },
   template: '<textarea ng-attr-placeholder="{{vm.placeholder}}"></textarea>',
   controller: ['$element', 'ngCkConfig', function NgCk ($element, ngCkConfig) {
@@ -87,7 +234,7 @@ app.component('ngCk', {
         }
       }
 
-      config = vm.config ? angular.merge({}, vm.config) : ngCkConfig
+      config = vm.config ? angular.merge({}, vm.config) : ngCkConfig.config
     }
 
     function postLink () {
@@ -97,8 +244,6 @@ app.component('ngCk', {
       editor.on('instanceReady', onInstanceReady)
       editor.on('pasteState', onEditorChange)
       editor.on('change', onEditorChange)
-      editor.on('focus', onFocus)
-      editor.on('blur', onBlur)
 
       if (content) {
         modelChanged = true
@@ -111,31 +256,32 @@ app.component('ngCk', {
       }
     }
 
-    function onInstanceReady () {
+    function onInstanceReady (event) {
       onDebug()
+
       if (vm.onInstanceReady) {
-        vm.onInstanceReady({editor: editor})
-      }
-      if (vm.onKey) {
-        editor.on('key', function onEditorKey (event) {
-          vm.onKey({$event: event, editor: editor})
+        vm.onInstanceReady({
+          event: event,
+          editor: editor
         })
       }
-      if (vm.onResize) {
-        editor.on('resize', function onEditorResize (event) {
-          vm.onResize({$event: event, editor: editor})
+
+      ngCkConfig
+        .events
+        .filter(eventName => eventName !== 'instanceReady')
+        .forEach((eventName) => {
+          let callbackName = 'on' + eventName[0].toUpperCase() + eventName.slice(1)
+
+          if (vm[callbackName]) {
+            editor.on(eventName, (event) => {
+              vm[callbackName]({
+                event: event,
+                editor: editor
+              })
+            })
+          }
         })
-      }
-      if (vm.onPaste) {
-        editor.on('paste', function onEditorPaste (event) {
-          vm.onPaste({$event: event, editor: editor})
-        })
-      }
-      if (vm.onSave) {
-        editor.on('save', function onEditorSave (event) {
-          vm.onSave({$event: event, editor: editor})
-        })
-      }
+
       vm.ngModelCtrl.$render()
     }
 
@@ -149,11 +295,10 @@ app.component('ngCk', {
         text = ''
       }
 
-      validate(text)
-
       if (!modelChanged && html !== vm.ngModelCtrl.$viewValue) {
         editorChanged = true
         vm.ngModelCtrl.$setViewValue(html)
+        validate(text)
         if (vm.onContentChanged) {
           vm.onContentChanged({
             editor: editor,
@@ -163,24 +308,6 @@ app.component('ngCk', {
         }
       }
       modelChanged = false
-    }
-
-    function onFocus (e) {
-      if (vm.onFocus) {
-        vm.onFocus({
-          $event: e,
-          editor: editor
-        })
-      }
-    }
-
-    function onBlur (e) {
-      if (vm.onBlur) {
-        vm.onBlur({
-          $event: e,
-          editor: editor
-        })
-      }
     }
 
     function onChanges (changes) {

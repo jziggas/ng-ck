@@ -1,6 +1,6 @@
 {
   "name": "ng-ck",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "An Angular 1 Component for CKEditor",
   "main": "src/ng-ck.js",
   "dependencies": {
@@ -27,7 +27,7 @@
   },
   "scripts": {
     "demo": "node node_modules/live-server/live-server.js . --open=demo/index.html",
-    "test": "node node_modules/standard/bin/cmd.js && node node_modules/karma/bin/karma start",
+    "test": "node node_modules/standard/bin/cmd.js && node node_modules/karma/bin/karma start && rm -rf coverage",
     "build": "node node_modules/babel-cli/bin/babel.js src/ng-ck.js | node node_modules/uglify-js/bin/uglifyjs > dist/ng-ck.min.js"
   },
   "repository": {

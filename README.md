@@ -1,3 +1,4 @@
+[![npm](https://img.shields.io/npm/v/ng-ck.svg)](https://www.npmjs.com/package/ng-ck)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jziggas/ng-ck/master/LICENSE)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Build Status](https://travis-ci.org/jziggas/ng-ck.svg?branch=master)](https://travis-ci.org/jziggas/ng-ck)
@@ -55,6 +56,14 @@ via Bower:
 
 ## Bindings
 
+ng-ck has callback bindings available for all of the events that occur on an editor instance.
+
+The callback attributes follow a format of `on-camel-cased-event="myCallback(event, editor)"` and return the event that occured as well as the editor object.
+
+For example, the `'instanceReady'` event would be `on-instance-ready="myCallback(event, editor)"` and `'doubleclick'` would be `on-doubleclick=myCallback(event, editor)`
+
+The list of events can be found at the [CKEDITOR.editor Documentation](http://docs.ckeditor.com/#!/api/CKEDITOR.editor)
+
 - `config: '<?'`
   - Configuration object passed to CKEditor. Overwrites the default configuration provided by `ngCkConfigProvider`.
 - `maxLength: '<?'`
@@ -65,27 +74,9 @@ via Bower:
   - Sets the [readOnly](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-property-readOnly) property of the editor. Default `undefined`.
 - `required: '<?'`
   - Designates if the editor is a required form input and sets the validity of ngModel. Default `undefined`.
-- `onBlur: '&?'`
-  - Callback for the [blur](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-blur) event
-  - `on-blur="onBlur($event, editor)"`
 - `onContentChanged: '&?'`
   - Callback for the [change](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-change) event
   - `on-content-changed="onContentChanged(editor, html, text)"`
-- `onFocus: '&?'`
-  - Callback for the [focus](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-focus) event
-  - `on-focus="onFocus($event, editor)"`
-- `onInstanceReady: '&?`
-  - Callback for the [instanceReady](http://docs.ckeditor.com/#!/api/CKEDITOR-event-instanceReady) event
-  - `on-instance-ready="onInstanceReady(editor)"`
-- `onKey: '&?`
-  - Callback for the [key](http://docs.ckeditor.com/#!/api/CKEDITOR-event-key) event
-  - `on-key="onKey($event, editor)"`
-- `onPaste: '&?`
-  - Callback for the [paste](http://docs.ckeditor.com/#!/api/CKEDITOR-event-paste) event
-  - `on-paste="onPaste($event, editor)"`
-- `onSave: '&?`
-  - Callback for the [save](http://docs.ckeditor.com/#!/api/CKEDITOR-event-save) event
-  - `on-save="onSave($event, editor)"`
 
 ## Contribution
 - Pull requests welcome.
