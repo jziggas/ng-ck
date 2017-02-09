@@ -69,13 +69,13 @@ The following attributes are also available:
 - `config: '<?'`
   - Configuration object passed to CKEditor. Overwrites the default configuration provided by `ngCkConfigProvider`.
 - `maxLength: '<?'`
-  - Default `undefined`.
+  - Updates ngModel validity. Default `undefined`.
 - `minLength: '<?'`
-  - Default `undefined`.
+  - Updates ngModel validity. Default `undefined`.
 - `readOnly: '<?'`
   - Sets the [readOnly](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-property-readOnly) property of the editor. Default `undefined`.
 - `required: '<?'`
-  - Designates if the editor is a required form input and sets the validity of ngModel. Default `undefined`.
+  - Updates ngModel validity. Default `undefined`.
 - `onContentChanged: '&?'`
   - CKEditor's `'change'` event gets triggered on a variety of actions that take place and not just when the content changes. This callback lets you know when a change in content has actually taken place.
   - `on-content-changed="onContentChanged(editor, html, text)"`
