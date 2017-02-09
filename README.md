@@ -64,6 +64,8 @@ For example, the `'instanceReady'` event would be `on-instance-ready="myCallback
 
 The list of events can be found at the [CKEDITOR.editor Documentation](http://docs.ckeditor.com/#!/api/CKEDITOR.editor)
 
+The following attributes are also available:
+
 - `config: '<?'`
   - Configuration object passed to CKEditor. Overwrites the default configuration provided by `ngCkConfigProvider`.
 - `maxLength: '<?'`
@@ -75,7 +77,7 @@ The list of events can be found at the [CKEDITOR.editor Documentation](http://do
 - `required: '<?'`
   - Designates if the editor is a required form input and sets the validity of ngModel. Default `undefined`.
 - `onContentChanged: '&?'`
-  - Callback for the [change](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-change) event
+  - CKEditor's `'change'` event gets triggered on a variety of actions that take place and not just when the content changes. This callback lets you know when a change in content has actually taken place.
   - `on-content-changed="onContentChanged(editor, html, text)"`
 
 ## Contribution
