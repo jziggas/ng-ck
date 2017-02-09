@@ -1,4 +1,3 @@
-'use strict'
 var app = angular.module('ngCk', [])
 app.provider('ngCkConfig', function ngCkConfigProvider () {
   // Default plugins that have successfully passed through Angular's $sanitize service
