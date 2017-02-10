@@ -88,3 +88,8 @@ The following attributes are also available:
 
 ## Contribution
 - Pull requests welcome.
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/jziggas/ng-ck/badge.svg?style=beer-square)](https://beerpay.io/jziggas/ng-ck)  [![Beerpay](https://beerpay.io/jziggas/ng-ck/make-wish.svg?style=flat-square)](https://beerpay.io/jziggas/ng-ck?focus=wish)
